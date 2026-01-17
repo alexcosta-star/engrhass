@@ -109,9 +109,7 @@ export default function Hero() {
                             className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] mb-6 cursor-default select-none tracking-tight"
                             title="Double-click for admin"
                         >
-                            {data.name.split(' ').map((word, i) => (
-                                <span key={i} className={i === 2 ? "text-blue-600" : ""}> {word} </span>
-                            ))}
+                            {data.name}
                         </motion.h1>
 
                         <motion.p
