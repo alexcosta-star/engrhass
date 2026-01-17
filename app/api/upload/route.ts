@@ -18,31 +18,25 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "No file provided" }, { status: 400 });
         }
 
-        // Convert file to buffer
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        // Upload to Cloudinary
-        return new Promise((resolve, reject) => {
-            const uploadStream = cloudinary.uploader.upload_stream(
+        const result = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
                 {
                     resource_type: resourceType as any,
                     folder: "portfolio",
                 },
                 (error, result) => {
-                    if (error) {
-                        console.error("Cloudinary error:", error);
-                        resolve(NextResponse.json({ error: "Cloudinary upload failed" }, { status: 500 }));
-                    } else {
-                        resolve(NextResponse.json(result));
-                    }
+                    if (error) reject(error);
+                    else resolve(result);
                 }
-            );
-
-            uploadStream.end(buffer);
+            ).end(buffer);
         });
+
+        return NextResponse.json(result);
     } catch (error) {
         console.error("Upload error:", error);
-        return NextResponse.json({ error: "Server error during upload" }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed" }, { status: 500 });
     }
 }
