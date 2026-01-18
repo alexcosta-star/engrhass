@@ -8,9 +8,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EngrHass - Portfolio",
-  description: "Professional portfolio showcasing skills and experience",
+  title: "Muhammad Hassnain Tahir | Junior Civil Engineer",
+  description: "Official portfolio of Muhammad Hassnain Tahir, a Junior Civil Engineer based in Dubai, experienced in site supervision, surveying, and infrastructure design.",
 };
+
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function RootLayout({
   children,
@@ -20,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <LoadingScreen />
         {children}
       </body>
     </html>

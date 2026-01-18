@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { motion } from "framer-motion";
@@ -18,6 +18,7 @@ export default function Hero() {
     const [data, setData] = useState<HeroData | null>(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+    const lastTapRef = useRef<number>(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,8 +31,8 @@ export default function Hero() {
                 } else {
                     setData({
                         name: "Muhammad Hassnain Tahir",
-                        title: "Civil Engineer",
-                        description: "Designing and building infrastructure that connects communities and shapes the future.",
+                        title: "Junior Civil Engineer",
+                        description: "Junior Civil Engineer with a Bachelor’s degree in Civil Engineering from NFC Institute of Engineering & Technology, Multan. Currently based in Dubai and available for immediate joining. Experienced in site supervision, surveying, building layout works, quantity take-offs, BOQs, and construction drawings.",
                         imageUrl: "https://res.cloudinary.com/dyq5zfd8x/image/upload/v1/sample"
                     });
                 }
@@ -47,6 +48,14 @@ export default function Hero() {
 
     const handleNameDoubleClick = () => {
         router.push("/admin");
+    };
+
+    const handleNameTouchEnd = () => {
+        const now = Date.now();
+        if (now - lastTapRef.current < 300) {
+            router.push("/admin");
+        }
+        lastTapRef.current = now;
     };
 
     if (loading) {
@@ -82,10 +91,16 @@ export default function Hero() {
                     className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-blue-50/40 rounded-full blur-[130px]"
                 ></motion.div>
 
-                {/* Engineering Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.03]"
+                {/* Engineering Grid Pattern - Animated */}
+                <motion.div
+                    animate={{
+                        opacity: [0.06, 0.10, 0.06],
+                        backgroundPosition: ['0px 0px', '20px 20px', '0px 0px']
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0"
                     style={{ backgroundImage: 'linear-gradient(#2563eb 1px, transparent 1px), linear-gradient(90deg, #2563eb 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-                </div>
+                </motion.div>
             </div>
 
             <div className="container relative z-10 mx-auto px-6 lg:px-20">
@@ -106,6 +121,7 @@ export default function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                             onDoubleClick={handleNameDoubleClick}
+                            onTouchEnd={handleNameTouchEnd}
                             className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] mb-6 cursor-default select-none tracking-tight"
                             title="Double-click for admin"
                         >

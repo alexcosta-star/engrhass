@@ -31,27 +31,31 @@ export default function Experience() {
                     setExperiences([
                         {
                             id: "1",
-                            role: "Senior Civil Engineer",
-                            company: "Global Infrastructure Group",
-                            duration: "2022 - Present",
-                            description:
-                                "Leading structural design for large-scale bridge projects. Managing on-site construction teams and ensuring strict adherence to international safety standards.",
+                            role: "Social Media Executive",
+                            company: "BAROSA Events & Marketing Company",
+                            duration: "05/April/2022 - 20/Dec/2025",
+                            description: "Planned and organized social media content, scheduled posts, managed campaigns, and coordinated with creative teams to ensure brand consistency.",
                         },
                         {
                             id: "2",
-                            role: "Project Manager",
-                            company: "Urban Development Authority",
-                            duration: "2019 - 2022",
-                            description:
-                                "Overseeing urban drainage and road infrastructure projects. Coordinated between government stakeholders and private contractors to deliver projects under budget.",
+                            role: "Junior Site Incharge Engineer",
+                            company: "M/S Super Highway Construction Company",
+                            duration: "12 Months (Last 2 Semesters)",
+                            description: "Assisted in site supervision, ensured work quality and safety compliance, coordinated with labor teams, and maintained daily progress reports.",
                         },
                         {
                             id: "3",
-                            role: "Junior Structural Engineer",
-                            company: "BuildRight Consultants",
-                            duration: "2017 - 2019",
-                            description:
-                                "Assisted in the design and analysis of high-rise residential buildings. Performed complex structural calculations and drafted technical specifications.",
+                            role: "Field Training Intern",
+                            company: "Fine Homes & Co.",
+                            duration: "July 2025 – Dec 2025",
+                            description: "Gained hands-on experience in site operations, documentation, and field supervision. Developed skills in drawing interpretation and quality control.",
+                        },
+                        {
+                            id: "4",
+                            role: "Supervisor",
+                            company: "Unilever, Pakistan",
+                            duration: "Sep 2020 – Feb 2022",
+                            description: "Oversaw daily operations, monitored staff performance, and trained teams to achieve production targets while maintaining quality.",
                         },
                     ]);
                 } else {

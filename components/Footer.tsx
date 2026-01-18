@@ -26,11 +26,11 @@ export default function Footer() {
                     setData(docSnap.data() as FooterData);
                 } else {
                     setData({
-                        email: "hassnain@example.com",
-                        phone: "+92 300 1234567",
-                        location: "Lahore, Pakistan",
-                        linkedin: "https://linkedin.com",
-                        about: "Civil Engineer passionate about innovative infrastructure design and sustainable construction practices."
+                        email: "hassnain.3280@gmail.com",
+                        phone: "+971 544679407",
+                        location: "Al Nahda 2 - Dubai",
+                        linkedin: "https://linkedin.com/in/muhammadhassnaintahir/",
+                        about: "Junior Civil Engineer dedicated to high-quality construction, site supervision, and infrastructure development."
                     });
                 }
             } catch (error) {

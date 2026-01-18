@@ -329,15 +329,14 @@ export default function AdminPage() {
 
     const tabs = [
         { id: "hero", label: "Hero", icon: Home },
-        { id: "certificates", label: "Certificates", icon: Award },
-        { id: "experience", label: "Experience", icon: Briefcase },
-        { id: "cv", label: "CV", icon: FileText },
+        { id: "certificates", label: "Certs", icon: Award },
+        { id: "experience", label: "Exp", icon: Briefcase },
         { id: "footer", label: "Footer", icon: Settings },
         { id: "security", label: "Security", icon: Lock },
     ];
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 overflow-x-hidden">
             {/* Save Status Toast */}
             {saveStatus && (
                 <div className="fixed top-4 right-4 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg z-50">
@@ -345,8 +344,45 @@ export default function AdminPage() {
                 </div>
             )}
 
-            {/* Sidebar */}
-            <div className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 p-6">
+            {/* Mobile Header & Navigation */}
+            <div className="lg:hidden sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+                {/* Top Header with Home Link */}
+                <div className="flex items-center justify-between p-3 border-b border-gray-100">
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors font-semibold text-sm"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        Home
+                    </Link>
+                    <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <Settings className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="font-bold text-gray-900 text-sm">Admin</span>
+                    </div>
+                </div>
+
+                {/* Grid Navigation */}
+                <nav className="grid grid-cols-6 gap-1 p-2 bg-gray-50">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg transition-all ${activeTab === tab.id
+                                ? "bg-blue-600 text-white shadow-md"
+                                : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                                }`}
+                        >
+                            <tab.icon className="w-5 h-5" />
+                            <span className="text-[9px] font-semibold mt-1 uppercase tracking-tight truncate w-full text-center">{tab.label}</span>
+                        </button>
+                    ))}
+                </nav>
+            </div>
+
+            {/* Desktop Sidebar */}
+            <div className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 p-6 flex-col">
                 <div className="flex items-center gap-3 mb-8">
                     <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                         <Settings className="w-5 h-5 text-white" />
@@ -357,13 +393,13 @@ export default function AdminPage() {
                     </div>
                 </div>
 
-                <nav className="space-y-2">
+                <nav className="space-y-2 flex-1">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left ${activeTab === tab.id
-                                ? "bg-blue-50 text-blue-600"
+                                ? "bg-blue-50 text-blue-600 font-semibold"
                                 : "text-gray-600 hover:bg-gray-50"
                                 }`}
                         >
@@ -373,19 +409,17 @@ export default function AdminPage() {
                     ))}
                 </nav>
 
-                <div className="absolute bottom-6 left-6 right-6">
-                    <Link
-                        href="/"
-                        className="w-full flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors"
-                    >
-                        <ArrowLeft className="w-5 h-5" />
-                        Back to Home
-                    </Link>
-                </div>
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-lg transition-colors mt-4"
+                >
+                    <ArrowLeft className="w-5 h-5" />
+                    Back to Home
+                </Link>
             </div>
 
-            {/* Main Content */}
-            <div className="ml-64 p-8">
+            {/* Main Content Area */}
+            <div className="lg:ml-64 p-3 md:p-6 min-h-screen">
                 {loading ? (
                     <div className="flex items-center justify-center h-64">
                         <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
@@ -612,49 +646,6 @@ export default function AdminPage() {
                             </div>
                         )}
 
-                        {/* CV Editor */}
-                        {activeTab === "cv" && (
-                            <div className="max-w-2xl">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6">CV / Resume</h2>
-                                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">CV File</label>
-                                        <div className="flex items-center gap-4">
-                                            <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer transition-colors">
-                                                <Upload className="w-4 h-4" />
-                                                Upload PDF
-                                                <input type="file" accept=".pdf" onChange={handleCVUpload} className="hidden" />
-                                            </label>
-                                            {cv.fileName && <span className="text-sm text-gray-600">{cv.fileName}</span>}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">CV URL</label>
-                                        <input
-                                            type="text"
-                                            value={cv.cvUrl}
-                                            onChange={(e) => setCv({ ...cv, cvUrl: e.target.value })}
-                                            placeholder="https://..."
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">File Name</label>
-                                        <input
-                                            type="text"
-                                            value={cv.fileName}
-                                            onChange={(e) => setCv({ ...cv, fileName: e.target.value })}
-                                            placeholder="Resume.pdf"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-                                    <button onClick={saveCv} className="flex items-center gap-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-                                        <Save className="w-4 h-4" />
-                                        Save CV
-                                    </button>
-                                </div>
-                            </div>
-                        )}
 
                         {/* Footer Editor */}
                         {activeTab === "footer" && (

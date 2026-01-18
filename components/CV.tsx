@@ -80,13 +80,15 @@ export default function CV() {
                         <p className="text-gray-500 text-sm mb-6">
                             PDF Document
                         </p>
-                        <button
-                            onClick={openCVInViewer}
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-blue-600/20"
+                        <a
+                            href="https://wa.me/971544679407?text=Hi%20Hassnain%2C%20please%20send%20me%20your%20CV"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-green-600/20"
                         >
                             <ExternalLink className="w-5 h-5" />
-                            View CV
-                        </button>
+                            Request CV via WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
