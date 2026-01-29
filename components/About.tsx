@@ -9,7 +9,7 @@ export default function About() {
             degree: "BS Civil Engineering",
             institution: "NFC Institute of Engineering & Technology, Multan",
             year: "2021 – 2025",
-            details: "Recipient of MOFA need-based scholarship."
+            details: "Recipient of HEC scholarship."
         },
         {
             degree: "Diploma of Associate Engineering (Civil)",

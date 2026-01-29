@@ -81,7 +81,7 @@ export default function CV() {
                             PDF Document
                         </p>
                         <a
-                            href="https://wa.me/971544679407?text=Hi%20Hassnain%2C%20please%20send%20me%20your%20CV"
+                            href="https://wa.me/971562613896?text=Hi%20Hassnain%2C%20please%20send%20me%20your%20CV"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-green-600/20"

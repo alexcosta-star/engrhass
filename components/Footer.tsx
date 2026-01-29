@@ -27,7 +27,7 @@ export default function Footer() {
                 } else {
                     setData({
                         email: "hassnain.3280@gmail.com",
-                        phone: "+971 544679407",
+                        phone: "+971 56 261 3896",
                         location: "Al Nahda 2 - Dubai",
                         linkedin: "https://linkedin.com/in/muhammadhassnaintahir/",
                         about: "Junior Civil Engineer dedicated to high-quality construction, site supervision, and infrastructure development."
@@ -88,13 +88,23 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Contact</h4>
                         <ul className="space-y-3">
-                            <li className="flex items-center gap-3 text-gray-400">
-                                <Mail className="w-5 h-5 text-blue-500" />
-                                <span>{data?.email || "hassnain@example.com"}</span>
+                            <li className="flex items-center gap-3 text-gray-400 group">
+                                <Mail className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform" />
+                                <a
+                                    href={`mailto:${data?.email || "hassnain.3280@gmail.com"}`}
+                                    className="hover:text-blue-500 transition-colors"
+                                >
+                                    {data?.email || "hassnain.3280@gmail.com"}
+                                </a>
                             </li>
-                            <li className="flex items-center gap-3 text-gray-400">
-                                <Phone className="w-5 h-5 text-blue-500" />
-                                <span>{data?.phone || "+92 300 1234567"}</span>
+                            <li className="flex items-center gap-3 text-gray-400 group">
+                                <Phone className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform" />
+                                <a
+                                    href={`tel:${data?.phone?.replace(/\s+/g, '') || "+971562613896"}`}
+                                    className="hover:text-blue-500 transition-colors"
+                                >
+                                    {data?.phone || "+971 56 261 3896"}
+                                </a>
                             </li>
                             <li className="flex items-center gap-3 text-gray-400">
                                 <MapPin className="w-5 h-5 text-blue-500" />
